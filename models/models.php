@@ -1,4 +1,5 @@
 <?php
+require 'umum/vars.php';
 require 'umum/class_db.php';
 require 'ragam/fungsi_ragam_list.php';
 require 'umum/fungsi_gen_id.php';
@@ -17,5 +18,5 @@ require 'indikator/fungsi_indikator_list.php';
 require 'metadata/fungsi_metadata_all.php';
 //models untuk analisis
 require 'analisis/fungsi_als_all.php';
-require 'umum/vars.php';
+require 'umum/fungsi_umum.php';
 ?>
