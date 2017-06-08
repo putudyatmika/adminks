@@ -20,10 +20,11 @@
 						$i=1;
 						$max_var=$r_als["als_total"];
 						for ($i=1;$i<=$max_var;$i++) {
+							$tgl_pjg=tanggal_pendek($r_als["item"][$i]["als_waktu"], true, true);
 							echo '
 							<tr>
 								<td>'.$i.'</td>
-								<td>'.$r_als["item"][$i]["als_waktu"].'</td>
+								<td>'.$tgl_pjg.'</td>
 								<td>'.truncate($r_als["item"][$i]["als_judul"],30).'</td>
 								<td>'.truncate($r_als["item"][$i]["als_isi"],30).'</td>
 								<td><div class="text-center"><a href="'.$app_url.'/'.$page.'/view/'.$r_als["item"][$i]["als_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 

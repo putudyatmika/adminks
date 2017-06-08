@@ -10,10 +10,10 @@
         <?php }
         
         else {
-        
+        $tgl_pdk=tanggal_panjang($als_view["item"]["als_waktu"], true, true);
         ?>
         <div class="box-header with-border">
-    	    <h3 class="box-title"><?php echo $als_view["item"]["als_judul"];?></h3> <p class="description"><?php echo $als_view["item"]["als_waktu"];?></p>
+    	    <h3 class="box-title"><?php echo $als_view["item"]["als_judul"];?></h3> <p class="description"><?php echo $tgl_pdk;?></p>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
