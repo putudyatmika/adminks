@@ -29,4 +29,12 @@ function list_variabel_strategis() {
 	}
 	return $list_indikator;
 }
+function jumlah_indikator() {
+	$db_indikator = new db();
+	$conn_indikator = $db_indikator -> connect();
+	$sql_indikator = $conn_indikator -> query("select * from ragam_variabel where strategis>='0'");
+	$sql_jumlah=$sql_indikator->num_rows;
+	return $sql_jumlah;
+	$conn_indikator->close();
+}
 ?>

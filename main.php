@@ -148,17 +148,6 @@
          <li><a href="<?php echo $app_url.'/indikator/'; ?>"><i class="fa fa-link"></i> <span>Indikator Strategis</span></a></li>
           <li><a href="<?php echo $app_url.'/metadata/'; ?>"><i class="fa fa-link"></i> <span>Metadata</span></a></li>
            <li><a href="<?php echo $app_url.'/analisis/'; ?>"><i class="fa fa-link"></i> <span>Analisis Lintas Sektoral</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -268,8 +257,10 @@
 <script src="<?php echo $app_url; ?>/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo $app_url; ?>/plugins/select2/select2.full.min.js"></script>
 <script src="<?php echo $app_url; ?>/plugins/iCheck/icheck.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?php echo $app_url; ?>/dist/js/app.min.js"></script>
+<script src="<?php echo $app_url; ?>/plugins/ckeditor/ckeditor.js"></script>
 <script>
   $(document).ready(function() {
     //Initialize Select2 Elements
@@ -302,7 +293,10 @@
       checkboxClass: 'icheckbox_flat-green',
       radioClass: 'iradio_flat-green'
     });
-});
+    CKEDITOR.replace('editorCK');
+    CKEDITOR.replace('editorCK2');
+    CKEDITOR.replace('editorCK3');
+  });
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

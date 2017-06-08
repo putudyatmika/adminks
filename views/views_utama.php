@@ -37,8 +37,11 @@
   elseif ($page=="metadata") {
     include 'views/metadata/metadata.php';
   }
+  elseif ($page=="analisis") {
+    include 'views/analisis/analisis.php';
+  }
  	else {
- 		
+ 		include 'views/utama.php';
  	}
 ?>
     </section>
