@@ -13,5 +13,7 @@ require 'regional/fungsi_reg_value.php';
 require 'regional/fungsi_reg_box_dashboard.php';
 //models untuk indikator strategis
 require 'indikator/fungsi_indikator_list.php';
+//models untuk metadata
+require 'metadata/fungsi_metadata_all.php';
 require 'umum/vars.php';
 ?>

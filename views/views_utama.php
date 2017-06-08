@@ -34,6 +34,9 @@
   elseif ($page=="indikator") {
     include 'views/indikator/indikator.php';
   }
+  elseif ($page=="metadata") {
+    include 'views/metadata/metadata.php';
+  }
  	else {
  		
  	}
