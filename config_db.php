@@ -1,6 +1,6 @@
 <?php
 //set url domain
-$app_url='http://192.168.1.9/adminks';
+$app_url='http://10.52.6.31/adminks';
 
 //Setting Database
 define('db_name','klinik_statistik');

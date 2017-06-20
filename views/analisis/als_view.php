@@ -22,7 +22,7 @@
          <div class="box-footer">
               <span class="pull-right">
               <a href="<?php echo $app_url.'/'.$page.'/editals/'.$lvl3;?>" class="btn btn-warning">Edit</a>
-              <a href="<?php echo $app_url.'/'.$page.'/editals/'.$lvl3;?>" class="btn btn-danger" data-confirm="Apakah data metadata ini akan di hapus?">Hapus</a>
+              <a href="<?php echo $app_url.'/'.$page.'/editals/'.$lvl3;?>" class="btn btn-danger" data-confirm="Apakah analisis ini akan di hapus?">Hapus</a>
               </span>
             </div>
          <?php
