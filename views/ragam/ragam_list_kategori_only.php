@@ -61,10 +61,11 @@
                   <th>Ket</th>
                   <th>Pos</th>
                   <th>Strategis</th>
-                  <th style="width: 100px">Aksi</th>
+                  <th style="width: 120px">Aksi</th>
                 </tr>
                 <?php
-                $r_var=list_ragam_variabel($lvl3);
+                //$r_var=list_ragam_variabel($lvl3);
+                $r_var=list_only_ragam_variabel($lvl3,$lvl4);
                 if ($r_var["error"]==false) {
 						$i=1;
 						$max_var=$r_var["tema_var_total"];
@@ -77,7 +78,9 @@
 								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_indikator"].'</td>
-								<td><div class="text-center"><a href="'.$app_url.'/'.$page.'/view/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
+								<td><div class="text-center">
+								<a href="'.$app_url.'/'.$page.'/addvalueonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								<a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/editvar/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvar/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data variabel ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>
@@ -100,8 +103,8 @@
           </div>
           <!-- /.box -->
           <!--box untuk view-->
-           <?php if ($lvl4 != "") { 
-          	$var_id=$lvl4;
+           <?php if ($lvl5 != "") { 
+          	$var_id=$lvl5;
 			if (cek_varID($var_id)==FALSE) {
 			     $var_nama="Variabel ID ini tidak ada";
 			 }
@@ -116,7 +119,7 @@
           	?>
           <div class="box box-solid box-warning">
             <div class="box-header">
-              <h3 class="box-title">Value</h3> <span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/imporvalue/'.$lvl3.'/'.$lvl4; ?>" class="btn btn-flat btn-xs btn-success">Impor Excel</a> <a href="<?php echo $app_url.'/'.$page.'/addvalue/'.$lvl3.'/'.$lvl4; ?>" class="btn btn-flat btn-xs btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+              <h3 class="box-title">Value</h3> <span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/imporvalue/'.$lvl3.'/'.$lvl5; ?>" class="btn btn-flat btn-xs btn-success">Impor Excel</a> <a href="<?php echo $app_url.'/'.$page.'/addvalue/'.$lvl3.'/'.$lvl5; ?>" class="btn btn-flat btn-xs btn-success"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -130,7 +133,7 @@
                   <th style="width: 100px">Aksi</th>
                 </tr>
                 <?php
-                $r_var_value=list_variabel_value($lvl4);
+                $r_var_value=list_variabel_value($lvl5);
                 if ($r_var_value["error"]==false) {
 						$i=1;
 						$max_var_value=$r_var_value["var_value_total"];

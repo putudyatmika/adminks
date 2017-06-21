@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-10">
           <div class="box box-solid box-success">
             <div class="box-header">
               <h3 class="box-title">Analisis Lintas Sektoral</h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addals/'; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
@@ -24,7 +24,7 @@
 							<tr>
 								<td>'.$i.'</td>
 								<td>'.$tgl_pjg.'</td>
-								<td>'.truncate($r_als["item"][$i]["als_judul"],30).'</td>
+								<td>'.$r_als["item"][$i]["als_judul"].'</td>
 								<td><div class="text-center"><a href="'.$app_url.'/'.$page.'/view/'.$r_als["item"][$i]["als_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/editals/'.$r_als["item"][$i]["als_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusals/'.$r_als["item"][$i]["als_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah Analisis ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
