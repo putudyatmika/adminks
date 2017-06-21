@@ -28,6 +28,9 @@ elseif ($act=="updatevar") {
 elseif ($act=="addvalue") {
 	require 'ragam_addvalue.php';
 }
+elseif ($act=="addvalueonly") {
+	require 'ragam_addvalue_only.php';
+}
 elseif ($act=="savevalue") {
 	require 'ragam_savevalue.php';
 }
@@ -57,6 +60,9 @@ elseif ($act=="confirmimport") {
 }
 elseif ($act=="view") {
 	require 'ragam_list_kategori.php';
+}
+elseif ($act=="viewonly") {
+	require 'ragam_list_kategori_only.php';
 }
 else {
 	
