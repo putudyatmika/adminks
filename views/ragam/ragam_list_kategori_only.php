@@ -146,8 +146,8 @@
 								<td>'.$r_var_value["item"][$i]["var_value_nilai"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>
 								<td><div class="text-center">
-								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
-								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>
 							</tr>
 						';	
