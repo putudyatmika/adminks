@@ -70,7 +70,7 @@ function list_ragam_kategori($ragam_id) {
 function list_ragam_variabel($ragam_id) {
 	$db_tema_var = new db();
 	$conn_tema_var = $db_tema_var -> connect();
-	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id' order by kat_posisi, var_posisi asc");
+	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator, ragam_variabel.metadata as var_metadata from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id' order by kat_posisi, var_posisi asc");
 	$cek_tema_var = $sql_tema_var->num_rows;
 	$tema_list_var=array("error"=>false);
 	if ($cek_tema_var>0) {
@@ -86,7 +86,8 @@ function list_ragam_variabel($ragam_id) {
 				"tema_var_nama"=>$r->var_nama,
 				"tema_var_posisi"=>$r->var_posisi,
 				"tema_var_ket"=>$r->var_ket,
-				"tema_var_indikator"=>$r->var_indikator
+				"tema_var_indikator"=>$r->var_indikator,
+				"tema_var_metadata"=>$r->var_metadata
 			);
 			$i++;
 		}
@@ -97,11 +98,36 @@ function list_ragam_variabel($ragam_id) {
 	}
 	return $tema_list_var;
 }
-
+function get_jumlah_variabel_ragam($ragam_id) {
+	$db_tema = new db();
+	$conn_tema = $db_tema -> connect();
+	$sql_tema = $conn_tema -> query("select * from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id'");
+	$cek_tema = $sql_tema->num_rows;
+	if ($cek_tema>0) {
+		$jumlah_kategori=$cek_tema;
+	}
+	else {
+		$jumlah_kategori=null;
+	}
+	return $jumlah_kategori;
+}
+function get_jumlah_variabel_kategori($kat_id) {
+	$db_tema = new db();
+	$conn_tema = $db_tema -> connect();
+	$sql_tema = $conn_tema -> query("select * from ragam_variabel where kategori='$kat_id'");
+	$cek_tema = $sql_tema->num_rows;
+	if ($cek_tema>0) {
+		$jumlah_kategori=$cek_tema;
+	}
+	else {
+		$jumlah_kategori=null;
+	}
+	return $jumlah_kategori;
+}
 function list_only_ragam_variabel($ragam_id,$kat_id) {
 	$db_tema_var = new db();
 	$conn_tema_var = $db_tema_var -> connect();
-	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id' and ragam_variabel.kategori='$kat_id' order by kat_posisi, var_posisi asc");
+	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator, ragam_variabel.metadata as var_metadata from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id' and ragam_variabel.kategori='$kat_id' order by kat_posisi, var_posisi asc");
 	$cek_tema_var = $sql_tema_var->num_rows;
 	$tema_list_var=array("error"=>false);
 	if ($cek_tema_var>0) {
@@ -117,7 +143,8 @@ function list_only_ragam_variabel($ragam_id,$kat_id) {
 				"tema_var_nama"=>$r->var_nama,
 				"tema_var_posisi"=>$r->var_posisi,
 				"tema_var_ket"=>$r->var_ket,
-				"tema_var_indikator"=>$r->var_indikator
+				"tema_var_indikator"=>$r->var_indikator,
+				"tema_var_metadata"=>$r->var_metadata
 			);
 			$i++;
 		}

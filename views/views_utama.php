@@ -40,6 +40,9 @@
   elseif ($page=="analisis") {
     include 'views/analisis/analisis.php';
   }
+  elseif ($page=="chat") {
+    include 'views/chat/chat.php';
+  }
  	else {
  		include 'views/utama.php';
  	}
