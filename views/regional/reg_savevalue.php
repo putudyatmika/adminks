@@ -10,7 +10,6 @@ if ($_POST['submit']) {
 	}
 	elseif (cek_value_regVarID($value_var_id,urldecode($value_wilayah))==TRUE) {
 		echo 'Data value variabel ini sudah tersedia';
-	
 	}
 	else {
 		/*

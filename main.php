@@ -132,6 +132,7 @@
          <li><a href="<?php echo $app_url.'/indikator/'; ?>"><i class="fa fa-link"></i> <span>Indikator Strategis</span></a></li>
           <li><a href="<?php echo $app_url.'/metadata/'; ?>"><i class="fa fa-link"></i> <span>Metadata</span></a></li>
            <li><a href="<?php echo $app_url.'/analisis/'; ?>"><i class="fa fa-link"></i> <span>Analisis Lintas Sektoral</span></a></li>
+           <li><a href="<?php echo $app_url.'/chat/'; ?>"><i class="fa fa-link"></i> <span>Pojok Konsultasi Statistik</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

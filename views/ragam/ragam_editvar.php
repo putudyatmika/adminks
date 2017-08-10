@@ -11,6 +11,7 @@ else {
   $var_kat_id=$var_edit["var_kat_id"];
   $var_posisi=$var_edit["var_posisi"];
   $var_indikator=$var_edit["var_indikator"];
+  $var_metadata=$var_edit["var_metadata"];
   if (empty($var_indikator)) $v_stra="";
   else $v_stra="checked";
 }
@@ -81,6 +82,33 @@ else {
   <div class="col-sm-4">
   <input type="number" name="var_posisi" class="form-control" id="inputPosisi" placeholder="Posisi variabel" value="<?php echo $var_posisi;?>">
   </div>
+  </div>
+  <div class="form-group">
+  <label for="inputEmail3" class="col-sm-2 control-label">Metadata</label>
+  <div class="col-sm-10" id="select2">
+  <select name="var_metadata" id="var_metadata" class="form-control" style="width: 100%;">
+     <option value="">Tidak ada Metadata</option>
+     <?php
+      $r_md=list_metadata_all();
+      if ($r_md["error"]==false) {
+       $i=1;
+      $max_md=$r_md["md_total"];
+      for ($i=1;$i<=$max_md;$i++) {
+        if ($r_md["item"][$i]["md_id"]==$var_metadata) { $selected='selected="selected"'; }
+        else { $selected=''; }
+        echo '
+        <option value="'.$r_md["item"][$i]["md_id"].'" '.$selected.'>'.$r_md["item"][$i]["md_nama"].'</option>
+      ';  
+      }
+      }
+      else {
+        echo '
+        <option value="">'.$r_md["pesan_error"].'</option>
+        ';
+      }
+     ?>
+    </select>
+</div>
   </div>
    <div class="form-group">
   <label for="inputEmail3" class="col-sm-2 control-label">&nbsp;</label>

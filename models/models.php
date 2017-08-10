@@ -19,4 +19,7 @@ require 'metadata/fungsi_metadata_all.php';
 //models untuk analisis
 require 'analisis/fungsi_als_all.php';
 require 'umum/fungsi_umum.php';
+//models chat users
+require 'chat/fungsi_chat_user.php';
+require 'chat/fungsi_chat_pesan.php';
 ?>

@@ -26,6 +26,19 @@ function cek_katID($kat_id) {
 	}
 	return $cekkatID;
 }
+function get_jumlah_kategori($kat_id) {
+	$db_tema = new db();
+	$conn_tema = $db_tema -> connect();
+	$sql_tema = $conn_tema -> query("select * from ragam_kategori where tema='$kat_id'");
+	$cek_tema = $sql_tema->num_rows;
+	if ($cek_tema>0) {
+		$jumlah_kategori=$cek_tema;
+	}
+	else {
+		$jumlah_kategori=null;
+	}
+	return $jumlah_kategori;
+}
 function get_ragam_kategori($kat_id) { //full kategori konten
 	$db_kat = new db();
 	$conn_kat = $db_kat -> connect();

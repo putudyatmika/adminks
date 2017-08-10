@@ -38,7 +38,7 @@ function save_newvalue($var_id,$value_waktu,$value_nilai,$value_posisi) {
 	}
 	return $value_ins_status;
 }
-function save_newvar($var_id,$var_nama,$var_satuan,$var_posisi,$kat_id,$var_indikator,$var_ket) {
+function save_newvar($var_id,$var_nama,$var_satuan,$var_posisi,$kat_id,$var_indikator,$var_ket,$var_metadata) {
 	$db_var = new db();
 	$conn_var = $db_var -> connect();
 	if (empty($var_indikator)) { $var_indikator='NULL'; }
@@ -46,8 +46,12 @@ function save_newvar($var_id,$var_nama,$var_satuan,$var_posisi,$kat_id,$var_indi
 
 	if (empty($var_ket)) { $var_ket='NULL'; }
 	else { $var_ket="'".$var_ket."'"; }
-	$sql_ins_var = $conn_var-> query("insert into ragam_variabel(id,nama,satuan,kategori,posisi,strategis,keterangan)
-		values('$var_id','$var_nama','$var_satuan','$kat_id','$var_posisi',$var_indikator,$var_ket)") or die(mysqli_error($conn_var));
+
+	if (empty($var_metadata)) { $var_metadata='NULL'; }
+	else { $var_metadata="'".$var_metadata."'"; }
+
+	$sql_ins_var = $conn_var-> query("insert into ragam_variabel(id,nama,satuan,kategori,posisi,strategis,keterangan,metadata)
+		values('$var_id','$var_nama','$var_satuan','$kat_id','$var_posisi',$var_indikator,$var_ket,$var_metadata)") or die(mysqli_error($conn_var));
 	if ($sql_ins_var) {
 		$var_ins_status=TRUE;
 	}
@@ -61,7 +65,7 @@ function get_ragam_variabel($var_id) { //full konten variabel
 	$conn_var = $db_var -> connect();
 	$sql_var = $conn_var->query("select * from ragam_variabel where id='$var_id'");
 	$r=$sql_var->fetch_object();
-	$var_isi=array("var_nama"=>$r->nama,"var_satuan"=>$r->satuan,"var_ket"=>$r->keterangan,"var_kat_id"=>$r->kategori,"var_posisi"=>$r->posisi,"var_indikator"=>$r->strategis);
+	$var_isi=array("var_nama"=>$r->nama,"var_satuan"=>$r->satuan,"var_ket"=>$r->keterangan,"var_kat_id"=>$r->kategori,"var_posisi"=>$r->posisi,"var_indikator"=>$r->strategis,"var_metadata"=>$r->metadata);
 	return $var_isi;
 }
 function get_nama_variabel($var_id) { //hanya nama
@@ -92,7 +96,7 @@ function get_kategori_var($var_id) {
 	}
 	return $kat_nama;
 }
-function update_variabel($var_id,$var_nama,$var_satuan,$var_posisi,$var_ket,$kat_id,$var_indikator) {
+function update_variabel($var_id,$var_nama,$var_satuan,$var_posisi,$var_ket,$kat_id,$var_indikator,$var_metadata) {
 	$db_var = new db();
 	$conn_var = $db_var -> connect();
 	if (empty($var_indikator)) { $var_indikator='NULL'; }
@@ -101,8 +105,10 @@ function update_variabel($var_id,$var_nama,$var_satuan,$var_posisi,$var_ket,$kat
 	if (empty($var_ket)) { $var_ket='NULL'; }
 	else { $var_ket="'".$var_ket."'"; }
 
-	$sql_update_var = $conn_var-> query("update ragam_variabel set nama='$var_nama',satuan='$var_satuan',kategori='$kat_id', keterangan=$var_ket, posisi='$var_posisi', strategis=$var_indikator 
-		where id='$var_id'") or die(mysqli_error($conn_var));
+	if (empty($var_metadata)) { $var_metadata='NULL'; }
+	else { $var_metadata="'".$var_metadata."'"; }
+
+	$sql_update_var = $conn_var-> query("update ragam_variabel set nama='$var_nama',satuan='$var_satuan',kategori='$kat_id', keterangan=$var_ket, posisi='$var_posisi', strategis=$var_indikator, metadata=$var_metadata where id='$var_id'") or die(mysqli_error($conn_var));
 	if ($sql_update_var) {
 		$var_update_status=TRUE;
 	}

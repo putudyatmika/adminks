@@ -49,7 +49,7 @@
           <div class="col-md-7">
           <div class="box box-solid box-success">
             <div class="box-header">
-              <h3 class="box-title">Variabel</h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+              <h3 class="box-title">Variabel dari Kategori <?php echo get_nama_kategori($lvl4); ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding table-responsive">
@@ -57,10 +57,10 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Nama</th>
-                  <th>Kategori</th>
                   <th>Ket</th>
                   <th>Pos</th>
                   <th>Strategis</th>
+                  <th>Metadata</th>
                   <th style="width: 120px">Aksi</th>
                 </tr>
                 <?php
@@ -74,10 +74,10 @@
 							<tr>
 								<td>'.$i.'</td>
 								<td>'.$r_var["item"][$i]["tema_var_nama"].'</td>
-								<td>'.$r_var["item"][$i]["tema_var_kat_nama"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_indikator"].'</td>
+								<td>'.$r_var["item"][$i]["tema_var_metadata"].'</td>
 								<td><div class="text-center">
 								<a href="'.$app_url.'/'.$page.'/addvalueonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 

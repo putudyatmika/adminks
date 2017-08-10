@@ -7,6 +7,7 @@ if ($_POST['submit']) {
 	$var_satuan=$_POST['var_satuan'];
 	$var_ket=$_POST['var_ket'];
 	$var_posisi=$_POST['var_posisi'];
+	$var_metadata=$_POST['var_metadata'];
 	if (isset($_POST['var_indikator'])) {
 		$var_indikator=$_POST['var_indikator'];
 	}
@@ -22,7 +23,7 @@ if ($_POST['submit']) {
 	}
 	else {
 		
-	if (update_variabel($var_id,$var_nama,$var_satuan,$var_posisi,$var_ket,$var_kat_id,$var_indikator)==TRUE) echo "Variabel berhasil diupdate";
+	if (update_variabel($var_id,$var_nama,$var_satuan,$var_posisi,$var_ket,$var_kat_id,$var_indikator,$var_metadata)==TRUE) echo "Variabel berhasil diupdate";
 	else echo "Variabel tidak bisa diupdate";
 	
 	/*
