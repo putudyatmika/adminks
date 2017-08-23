@@ -43,6 +43,9 @@
   elseif ($page=="chat") {
     include 'views/chat/chat.php';
   }
+  elseif ($page=="diff") {
+    include 'views/diff/diff.php';
+  }
  	else {
  		include 'views/utama.php';
  	}

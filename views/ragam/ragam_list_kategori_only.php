@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-4">
           <div class="box box-solid box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Kategori</h3> <span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/addkat/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
@@ -19,10 +19,17 @@
 						$i=1;
 						$max_kat=$r_kat["tema_kat_total"];
 						for ($i=1;$i<=$max_kat;$i++) {
+							if ($lvl4==$r_kat["item"][$i]["tema_kat_id"]) {
+								$nama_kategori='<strong>'.$r_kat["item"][$i]["tema_kat_nama"].'</strong>';
+							}
+							else {
+								$nama_kategori=$r_kat["item"][$i]["tema_kat_nama"];
+							}
+							$jml_var=get_jumlah_variabel_kategori($r_kat["item"][$i]["tema_kat_id"]);
 							echo '
 							<tr>
 								<td>'.$i.'</td>
-								<td>'.$r_kat["item"][$i]["tema_kat_nama"].'</td>
+								<td>'.$nama_kategori.' <span class="label label-primary pull-right" title="'.$jml_var.' Variabel">'.$jml_var.'</span></td>
 								<td>'.$r_kat["item"][$i]["tema_kat_posisi"].'</td>
 								<td><div class="text-center"><div class="text-center"><a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> <a href="'.$app_url.'/'.$page.'/editkat/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapuskat/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data kategori ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div></td>
@@ -46,7 +53,7 @@
           </div>
           <!-- /.box -->
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
           <div class="box box-solid box-success">
             <div class="box-header">
               <h3 class="box-title">Variabel dari Kategori <?php echo get_nama_kategori($lvl4); ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
@@ -70,14 +77,19 @@
 						$i=1;
 						$max_var=$r_var["tema_var_total"];
 						for ($i=1;$i<=$max_var;$i++) {
+							if ($r_var["item"][$i]["tema_var_indikator"] != "") { $indikator='<span class="label label-danger">strategis</span>'; } 
+						    else { $indikator="";}
+
+						    if ($r_var["item"][$i]["tema_var_metadata"] != "") { $metadata='<span class="label label-primary">'.$r_var["item"][$i]["tema_var_metadata"].'</span>'; }
+						    else { $metadata=""; }
 							echo '
 							<tr>
 								<td>'.$i.'</td>
 								<td>'.$r_var["item"][$i]["tema_var_nama"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
-								<td>'.$r_var["item"][$i]["tema_var_indikator"].'</td>
-								<td>'.$r_var["item"][$i]["tema_var_metadata"].'</td>
+								<td>'.$indikator.'</td>
+								<td>'.$metadata.'</td>
 								<td><div class="text-center">
 								<a href="'.$app_url.'/'.$page.'/addvalueonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
@@ -130,6 +142,7 @@
                   <th>Waktu</th>
                   <th>Nilai</th>
                   <th>Posisi</th>
+                  <th>&nbsp;</th>
                   <th style="width: 100px">Aksi</th>
                 </tr>
                 <?php
@@ -145,6 +158,7 @@
 								<td>'.$r_var_value["item"][$i]["var_value_waktu"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_nilai"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>
+								<td>'.$r_var_value["item"][$i]["var_value_wilayah"].'</td>
 								<td><div class="text-center">
 								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>

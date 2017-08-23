@@ -21,8 +21,9 @@
         apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="<?php echo $app_url; ?>/dist/css/skins/skin-blue.min.css">
-  
+  <link rel="stylesheet" href="<?php echo $app_url; ?>/css/adminks.css">
   <link href="<?php echo $app_url; ?>/plugins/validator/css/bootstrapValidator.min.css" rel="stylesheet">
+  <link href="<?php echo $app_url; ?>/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +32,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -133,6 +134,7 @@
           <li><a href="<?php echo $app_url.'/metadata/'; ?>"><i class="fa fa-link"></i> <span>Metadata</span></a></li>
            <li><a href="<?php echo $app_url.'/analisis/'; ?>"><i class="fa fa-link"></i> <span>Analisis Lintas Sektoral</span></a></li>
            <li><a href="<?php echo $app_url.'/chat/'; ?>"><i class="fa fa-link"></i> <span>Pojok Konsultasi Statistik</span></a></li>
+            <li><a href="<?php echo $app_url.'/diff/'; ?>"><i class="fa fa-link"></i> <span>Turunan Ragam</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -173,6 +175,8 @@
 <!-- AdminLTE App -->
 <script src="<?php echo $app_url; ?>/dist/js/app.min.js"></script>
 <script src="<?php echo $app_url; ?>/plugins/ckeditor/ckeditor.js"></script>
+<script src="<?php echo $app_url; ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo $app_url; ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script>
   $(document).ready(function() {
     //Initialize Select2 Elements
@@ -189,7 +193,28 @@
     $('#dataConfirmModal').modal({show:true});
     return false;
   });
-
+//view value dari variabel
+$('a[data-lihat]').click(function(ev) {
+    //var href = $(this).attr('href');
+    var datapost = $(this).data('lihat');
+    if (!$('#dataConfirmModal').length) {
+      $('body').append('<div id="dataConfirmModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dataConfirmModal" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header modal-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Lihat Value</h3></div><div class="modal-body"> <div id="modal-loader" style="display: none; text-align: center;"><img src="<?php echo $app_url; ?>/img/ajax-loader.gif"></div><div id="dynamic-content">div<div class="row"><div class="col-md-12"><div class="table-responsive"><table id="tabelvalue" class="table table-striped table-bordered"></table></div></div></div><thead><tr><th data-field="kat_nama">Kategori</th><th data-field="var_nama">Variabel</th><th data-field="var_id">ID</th><th data-field="val_waktu">Waktu</th><th data-field="val_nilai">Nilai</th><th data-field="val_posisi">Posisi</th><th data-field="val_wilayah">Wilayah</th></tr></thead></table></div></div><div class="modal-footer"><button class="btn pull-left btn-success" data-dismiss="modal" aria-hidden="true">close</button></div></div></div></div>');
+    }
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+    $.ajax({
+      url: '<?php echo $app_url; ?>/json/'+datapost,
+      type: 'GET',
+      dataType: 'json'
+      success: function(data) {
+          $('#dynamic-content').hide(); // hide dynamic div
+          $('#dynamic-content').show(); // show dynamic div
+          $('#modal-loader').hide();
+        }
+    })
+    //$('#dataConfirmModal').modal({show:true});
+    return false;
+  });
    //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
@@ -210,7 +235,19 @@
     CKEDITOR.replace('editorCK3');
   });
 </script>
-
+<script>
+  $(function () {
+    $("#tabelVariabel").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

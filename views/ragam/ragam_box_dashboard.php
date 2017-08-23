@@ -18,7 +18,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Kategori</span>
-              <span class="info-box-number"><?php echo jumlah_kategori();?></span>
+              <span class="info-box-number"><?php if ($page=='ragam') { echo jumlah_kategori($lvl3); } else { echo jumlah_kategori('all'); } ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -35,7 +35,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Variabel</span>
-              <span class="info-box-number"><?php echo jumlah_variabel(); ?></span>
+              <span class="info-box-number"><?php if ($page=='ragam') { echo jumlah_variabel($lvl3); } else { echo jumlah_variabel('all'); } ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -48,7 +48,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Value</span>
-              <span class="info-box-number"><?php echo jumlah_value(); ?></span>
+              <span class="info-box-number"><?php if ($page=='ragam') { echo jumlah_value($lvl3); } else { echo jumlah_value('all'); } ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
