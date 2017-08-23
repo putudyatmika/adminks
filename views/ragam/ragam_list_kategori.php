@@ -54,8 +54,9 @@
               <h3 class="box-title">Variabel <span class="label label-info"><?php echo get_jumlah_variabel_ragam($lvl3); ?></span></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding table-responsive">
-              <table class="table table-striped">
+            <div class="box-body">
+              <table id="tabelVariabel" class="table table-striped table-hover">
+                <thead>
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Nama</th>
@@ -63,9 +64,11 @@
                   <th>Ket</th>
                   <th>Pos</th>
                   <th>&nbsp;</th>
-                  <th style="width: 100px">Aksi</th>
+                  <th style="width: 150px">Aksi</th>
                 </tr>
-                <?php
+                </thead>
+                <tbody>
+        		<?php
                 $r_var=list_ragam_variabel($lvl3);
                 if ($r_var["error"]==false) {
 						$i=1;
@@ -84,7 +87,8 @@
 								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
 								<td>'.$indikator.' '.$metadata.'</td>
-								<td><div class="text-center"><a href="'.$app_url.'/'.$page.'/view/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
+								<td><div class="text-center"><a href="#" class="btn btn-xs btn-warning" data-lihat="'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'"><i class="fa fa-search" aria-hidden="true"></i></a> 
+								<a href="'.$app_url.'/'.$page.'/view/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/editvar/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvar/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data variabel ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>
@@ -101,6 +105,18 @@
 						';
 					}
                 ?>
+                </tbody>
+                <tfoot>
+        		<tr>
+                  <th style="width: 10px">#</th>
+                  <th>Nama</th>
+                  <th>Kategori</th>
+                  <th>Ket</th>
+                  <th>Pos</th>
+                  <th>&nbsp;</th>
+                  <th style="width: 100px">Aksi</th>
+                </tr>
+                </tfoot>
               </table>
             </div>
             <!-- /.box-body -->
@@ -127,13 +143,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-              <table class="table table-striped">
+              <table id="tabelValue" class="table table-bordered table-striped table-hover">
+                
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Variabel</th>
                   <th>Waktu</th>
                   <th>Nilai</th>
                   <th>Posisi</th>
+                   <th>&nbsp;</th>
                   <th style="width: 100px">Aksi</th>
                 </tr>
                 <?php
@@ -149,7 +167,9 @@
 								<td>'.$r_var_value["item"][$i]["var_value_waktu"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_nilai"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>
+								<td>'.$r_var_value["item"][$i]["var_value_wilayah"].'</td>
 								<td><div class="text-center">
+								<a href="'.$app_url.'/diff/add/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>

@@ -28,6 +28,10 @@ if (!isset($_SESSION['hotel_user_id']) or empty($_SESSION['hotel_user_id']))
 	 }
 
 */
+if ($page=="json") {
+	require_once 'views/json/m_json.php';
+	exit();
+}	 
 if ($act=="confirmimport") {
 	include 'plugins/phpexcel/PHPExcel/IOFactory.php';
 }
