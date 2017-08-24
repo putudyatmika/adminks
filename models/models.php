@@ -22,4 +22,6 @@ require 'umum/fungsi_umum.php';
 //models chat users
 require 'chat/fungsi_chat_user.php';
 require 'chat/fungsi_chat_pesan.php';
+//model diff 
+require 'diff/fungsi_diff_all.php';
 ?>
