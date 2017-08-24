@@ -38,6 +38,7 @@ function get_nama_user($user_id) {
 		$nama_user="";
 	}
 	return $nama_user;
+	$conn_chat->close();
 }
 function cek_user($user_id) {
 	$db_chat = new db();
@@ -51,6 +52,7 @@ function cek_user($user_id) {
 		$cek_user=FALSE;
 	}
 	return $cek_user;
+	$conn_chat->close();
 }
 function get_jumlah_chat_user($user_id) {
 	$db_chat = new db();

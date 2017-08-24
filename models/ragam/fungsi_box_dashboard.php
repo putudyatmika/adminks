@@ -40,5 +40,12 @@ function jumlah_value($kat_id) {
 	return $total_value;
 	$conn_value->close();
 }
-
+function jumlah_value_variabel($var_id) {
+	$db_value = new db();
+	$conn_value = $db_value -> connect();
+	$sql_value = $conn_value->query("select * from ragam_value where variabel='$var_id");
+	$total_value=$sql_value->num_rows;	
+	return $total_value;
+	$conn_value->close();
+}
 ?>
