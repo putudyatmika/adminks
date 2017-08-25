@@ -135,6 +135,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
+            <div class="table-responsive">
               <table class="table table-striped">
                 <tr>
                   <th style="width: 10px">#</th>
@@ -177,6 +178,7 @@
 					}
                 ?>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

@@ -1,11 +1,12 @@
 <div class="row">
-	<div class="col-md-7">
+	<div class="col-md-8">
           <div class="box box-solid box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Variabel Diff </h3><span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/addkat/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+              <h3 class="box-title">Variabel Diff </h3><span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/add/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            <div class="table-responsive">
              	<table class="table table-bordered table-striped" id="tabelVariabel2">
              	<thead>
                 <tr>
@@ -26,13 +27,24 @@
 						$i=1;
 						$max_dif=$r_diff["diff_total"];
 						for ($i=1;$i<=$max_dif;$i++) {
-							
+							if ($r_diff["item"][$i]["diff_id"]==$lvl3) {
+                $var_nama='<strong>'.$r_diff["item"][$i]["diff_var_nama"].'</strong>';
+                $var_waktu='<strong>'.$r_diff["item"][$i]["diff_var_waktu"].'</strong>';
+                $diff_nama='<strong>'.$r_diff["item"][$i]["diff_nama"].'</strong>';
+                $diff_nama_select=$r_diff["item"][$i]["diff_nama"];
+                $var_waktu_select=$r_diff["item"][$i]["diff_var_waktu"];
+              }
+              else {
+                $var_nama=$r_diff["item"][$i]["diff_var_nama"];
+                $var_waktu=$r_diff["item"][$i]["diff_var_waktu"];
+                $diff_nama=$r_diff["item"][$i]["diff_nama"];
+              }
 							echo '
 							<tr>
 								<td>'.$i.'</td>
-								<td>'.$r_diff["item"][$i]["diff_var_nama"].'</td>
-								<td>'.$r_diff["item"][$i]["diff_var_waktu"].'</td>
-								<td>'.$r_diff["item"][$i]["diff_nama"].'</td>
+								<td>'.$var_nama.'</td>
+								<td>'.$var_waktu.'</td>
+								<td>'.$diff_nama.'</td>
 								<td>'.$r_diff["item"][$i]["diff_satuan"].'</td>
 								<td>'.$r_diff["item"][$i]["diff_ket"].'</td>
 								<td>'.$r_diff["item"][$i]["diff_posisi"].'</td>
@@ -65,6 +77,7 @@
                 </tr>
                 </tfoot>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
             
@@ -75,19 +88,17 @@
           if ($act=="view") {
           //act view tampilan ini
           ?>
-          <div class="col-md-5">
+          <div class="col-md-4">
           <div class="box box-solid box-success">
             <div class="box-header">
-              <h3 class="box-title">Value Diff </h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+              <h3 class="box-title">Value Diff : <?php echo $diff_nama_select .' '.$var_waktu_select; ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            <div class="table-responsive">
             	  <table id="tabelValue" class="table table-bordered table-striped table-hover">
-                
                 <tr>
                   <th style="width: 10px">#</th>
-                  <th>Variabel</th>
-                  <th>Waktu</th>
                   <th>Rincian</th>
                   <th>Nilai</th>
                   <th>Posisi</th>
@@ -102,8 +113,6 @@
 						echo '
 							<tr>
 								<td>'.$i.'</td>
-								<td>'.$r_val["item"][$i]["diff_var_nama"].'</td>
-								<td>'.$r_val["item"][$i]["diff_var_waktu"].'</td>
 								<td>'.$r_val["item"][$i]["diff_rincian"].'</td>
 								<td>'.$r_val["item"][$i]["diff_nilai"].'</td>
 								<td>'.$r_val["item"][$i]["diff_posisi"].'</td>
@@ -124,6 +133,7 @@
                 }
                 ?>
                 </table>
+                </div>
             </div>
             <!-- /.box-body -->
           </div>
