@@ -6,6 +6,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <tr>
                   <th style="width: 10px">#</th>
@@ -42,6 +43,7 @@
 					}
 				?>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
             
@@ -55,6 +57,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            <div class="table-responsive">
               <table id="tabelVariabel2" class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -175,6 +178,7 @@
                 </tr>
                 </tfoot>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -200,6 +204,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
+            <div class="table-responsive">
               <table id="tabelValue" class="table table-bordered table-striped table-hover">
                 
                 <tr>
@@ -248,6 +253,7 @@
 					}
                 ?>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
