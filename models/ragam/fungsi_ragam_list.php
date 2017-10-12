@@ -46,7 +46,7 @@ function list_ragam_kategori($ragam_id) {
 	$db_tema_kat = new db();
 	$conn_tema_kat = $db_tema_kat -> connect();
 	//$sql_tema_kat = $conn_tema_kat -> query("select * from ragam_kategori where tema='$ragam_id' order by posisi asc");
-	$sql_tema_kat = $conn_tema_kat -> query("select ragam_kategori.*, COUNT(ragam_variabel.kategori) as jumlah_variabel from ragam_kategori inner join ragam_variabel on ragam_variabel.kategori=ragam_kategori.id where ragam_kategori.tema='$ragam_id' group by ragam_variabel.kategori order by ragam_kategori.posisi asc");
+	$sql_tema_kat = $conn_tema_kat -> query("select ragam_kategori.*, COUNT(ragam_variabel.kategori) as jumlah_variabel from ragam_kategori left join ragam_variabel on ragam_variabel.kategori=ragam_kategori.id where ragam_kategori.tema='$ragam_id' group by ragam_variabel.kategori order by ragam_kategori.posisi asc");
 	$cek_tema_kat = $sql_tema_kat->num_rows;
 	$tema_list_kat=array("error"=>false);
 	if ($cek_tema_kat>0) {
@@ -73,7 +73,7 @@ function list_ragam_variabel($ragam_id) {
 	$db_tema_var = new db();
 	$conn_tema_var = $db_tema_var -> connect();
 	//$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator, ragam_variabel.metadata as var_metadata from ragam_kategori, ragam_variabel where ragam_variabel.kategori=ragam_kategori.id and ragam_kategori.tema='$ragam_id' order by kat_posisi, var_posisi asc");
-	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator, ragam_variabel.metadata as var_metadata, COUNT(ragam_value.variabel) as jumlah_value from ragam_variabel inner join ragam_value ON ragam_value.variabel=ragam_variabel.id INNER join ragam_kategori on ragam_variabel.kategori=ragam_kategori.id where ragam_kategori.tema='$ragam_id' group by ragam_value.variabel order by ragam_kategori.posisi, ragam_variabel.posisi asc");
+	$sql_tema_var = $conn_tema_var -> query("select ragam_kategori.id as kat_id, ragam_kategori.nama as kat_nama, ragam_kategori.posisi as kat_posisi, ragam_variabel.id as var_id, ragam_variabel.nama as var_nama, ragam_variabel.kategori as var_kat, ragam_variabel.posisi as var_posisi, ragam_variabel.keterangan as var_ket, ragam_variabel.strategis as var_indikator, ragam_variabel.metadata as var_metadata, COUNT(ragam_value.variabel) as jumlah_value from ragam_variabel inner join ragam_value ON ragam_value.variabel=ragam_variabel.id left join ragam_kategori on ragam_variabel.kategori=ragam_kategori.id where ragam_kategori.tema='$ragam_id' group by ragam_value.variabel order by ragam_kategori.posisi, ragam_variabel.posisi asc");
 	$cek_tema_var = $sql_tema_var->num_rows;
 	$tema_list_var=array("error"=>false);
 	if ($cek_tema_var>0) {
