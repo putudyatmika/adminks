@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-6">
           <div class="box box-solid box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Variabel Diff </h3><span class="pull-right"><a href="<?php echo $app_url.'/'.$page.'/add/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
@@ -14,8 +14,6 @@
                   <th>Var Nama</th>
                   <th>Waktu</th>
                   <th>Nama</th>
-                  <th>Satuan</th>
-                  <th>Keterangan</th>
                   <th style="width: 20px">posisi</th>
                   <th style="width: 100px">Aksi</th>
                 </tr>
@@ -44,9 +42,7 @@
 								<td>'.$i.'</td>
 								<td>'.$var_nama.'</td>
 								<td>'.$var_waktu.'</td>
-								<td>'.$diff_nama.'</td>
-								<td>'.$r_diff["item"][$i]["diff_satuan"].'</td>
-								<td>'.$r_diff["item"][$i]["diff_ket"].'</td>
+								<td>'.$diff_nama.' <p><small>'.$r_diff["item"][$i]["diff_ket"].' ('.$r_diff["item"][$i]["diff_satuan"].')</small></p></td>
 								<td>'.$r_diff["item"][$i]["diff_posisi"].'</td>
 								<td><div class="text-center"><div class="text-center"><a href="'.$app_url.'/'.$page.'/view/'.$r_diff["item"][$i]["diff_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> <a href="'.$app_url.'/'.$page.'/edit/'.$r_diff["item"][$i]["diff_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapus/'.$r_diff["item"][$i]["diff_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data variabel diff ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div></td>
@@ -70,8 +66,6 @@
                   <th>Var Nama</th>
                   <th>Waktu</th>
                   <th>Nama</th>
-                  <th>Satuan</th>
-                  <th>Keterangan</th>
                   <th style="width: 20px">posisi</th>
                   <th style="width: 100px">Aksi</th>
                 </tr>
@@ -88,7 +82,7 @@
           if ($act=="view") {
           //act view tampilan ini
           ?>
-          <div class="col-md-4">
+          <div class="col-md-6">
           <div class="box box-solid box-success">
             <div class="box-header">
               <h3 class="box-title">Value Diff : <?php echo $diff_nama_select .' '.$var_waktu_select; ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>

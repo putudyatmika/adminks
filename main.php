@@ -177,6 +177,7 @@
 <script src="<?php echo $app_url; ?>/plugins/ckeditor/ckeditor.js"></script>
 <script src="<?php echo $app_url; ?>/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo $app_url; ?>/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo $app_url; ?>/js/ajax.js"></script>
 <script type="text/javascript">
   $(function () {
     $("#tabelVariabel").DataTable();

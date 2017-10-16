@@ -80,16 +80,74 @@
 							if ($r_var["item"][$i]["tema_var_indikator"] != "") { $indikator='<span class="label label-danger">strategis</span>'; } 
 						    else { $indikator="";}
 
-						    if ($r_var["item"][$i]["tema_var_metadata"] != "") { $metadata='<span class="label label-primary">'.$r_var["item"][$i]["tema_var_metadata"].'</span>'; }
-						    else { $metadata=""; }
+						    if ($r_var["item"][$i]["tema_var_metadata"] != "") { 
+
+                  $metadata='<span><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#'.$r_var["item"][$i]["tema_var_metadata"].'">'.$r_var["item"][$i]["tema_var_metadata"].'</a></span>'; 
+						    	
+						    	$md_view=get_metadata($r_var["item"][$i]["tema_var_metadata"]);
+						    	if ($md_view["error"]==FALSE) {
+						    		$konten_md='
+						    		<div class="box box-solid box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Konsep dan Definisi</h3>
+          </div>
+          <div class="box-body">
+            '.$md_view["items"]["md_kondef"].'
+          </div>
+          </div>
+						    				<div class="box box-solid box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Kegunaan</h3>
+          </div>
+          <div class="box-body">
+            '.$md_view["items"]["md_kegunaan"].'
+          </div>
+          </div>	    		
+						    	<div class="box box-solid box-success">
+          <div class="box-header with-border">
+            <h3 class="box-title">Interprestasi</h3>
+          </div>
+          <div class="box-body">
+            '.$md_view["items"]["md_interpretasi"].'
+          </div>
+          </div>';
+						    	$modal_metadata='<div class="modal fade" tabindex="-1" role="dialog" id="'.$r_var["item"][$i]["tema_var_metadata"].'">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title class="text-green">Metadata '.$md_view["items"]["md_nama"].'</h4>
+              </div>
+              <div class="modal-body">
+                '.$konten_md.'
+              </div>
+              <div class="modal-footer">
+              <a href="'.$app_url.'/metadata/editmd/'.$r_var["item"][$i]["tema_var_metadata"].'" class="btn btn-success pull-left">Edit</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->';
+						    	}
+						    	else {
+						    		$konten_md=$md_view["pesan_error"];
+						    		$modal_metadata='';
+						    	}
+						    	
+							}
+						    else { $metadata="";
+						    $modal_metadata=""; }
 							echo '
 							<tr>
 								<td>'.$i.'</td>
 								<td>'.$r_var["item"][$i]["tema_var_nama"].'</td>
-								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
+								<td>'.$r_var["item"][$i]["tema_var_ket"].' ('.$r_var["item"][$i]["tema_var_satuan"].')</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
-								<td>'.$indikator.'</td>
-								<td>'.$metadata.'</td>
+								<td>'.$indikator.' '.$metadata.'</td>
 								<td><div class="text-center">
 								<a href="'.$app_url.'/'.$page.'/addvalueonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$lvl4.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> 
@@ -97,7 +155,8 @@
 								<a href="'.$app_url.'/'.$page.'/hapusvar/'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data variabel ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>
 							</tr>
-						';	
+						';
+						if (isset($modal_metadata) !='' ) { echo $modal_metadata; }	
 						}
 						
 					}
