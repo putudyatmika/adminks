@@ -28,6 +28,7 @@ function json_variabel_value($var_id) {
 	}
 	return $value_var_list;
 }
+
 function json_get_kategori($ragam_id) {
 	$db_tema_kat = new db();
 	$conn_tema_kat = $db_tema_kat -> connect();
