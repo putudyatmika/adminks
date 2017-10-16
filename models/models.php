@@ -24,4 +24,6 @@ require 'chat/fungsi_chat_user.php';
 require 'chat/fungsi_chat_pesan.php';
 //model diff 
 require 'diff/fungsi_diff_all.php';
+//model json
+require 'json/fungsi_json.php';
 ?>

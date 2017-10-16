@@ -10,9 +10,9 @@
 <form class="form-horizontal" action="<?php echo $app_url.'/'.$page.'/savevar/'; ?>" method="post" role="form">
 <div class="box-body">
 <div class="form-group">
-<label for="var_kat_id" class="col-sm-2 control-label">Ragam</label>
+<label for="diff_ragam_id" class="col-sm-2 control-label">Ragam</label>
 <div class="col-sm-10" id="select2">
-	<select name="var_kat_id" id="var_kat_id" class="form-control" style="width: 100%;">
+	<select name="diff_ragam_id" id="diff_ragam_id" class="form-control" style="width: 100%;">
   <option value="">Pilih salah satu</option>
      <?php
      	$r_ragam=ragam_tema_list();
@@ -35,53 +35,19 @@
 </div>
 </div>
 <div class="form-group">
-<label for="var_kat_id" class="col-sm-2 control-label">Variabel</label>
+<label for="diff_var_id" class="col-sm-2 control-label">Variabel</label>
 <div class="col-sm-10" id="select2">
-  <select name="var_kat_id" id="var_kat_id" class="form-control" style="width: 100%;">
-  <option value="">Pilih salah satu</option>
-     <?php
-      $r_ragam=ragam_tema_list();
-      if ($r_ragam["error"]==FALSE) {
-        $i=1;
-      $max_ragam=$r_ragam["tema_total"];
-      for ($i=1;$i<=$max_ragam;$i++) {
-        echo '
-        <option value="'.$r_ragam["item"][$i]["tema_id"].'">'.$r_ragam["item"][$i]["tema_nama"].'</option>
-      ';  
-      }
-      }
-      else {
-        echo '
-        <option value="">'.$r_ragam["pesan_error"].'</option>
-        ';
-      }
-     ?>
-    </select>
+  <select name="diff_var_id" id="diff_var_id" class="form-control" style="width: 100%;">
+  <option value="">Pilih variabel</option>
+  </select>
 </div>
 </div>
 <div class="form-group">
-<label for="var_kat_id" class="col-sm-2 control-label">Value</label>
+<label for="diff_value_id" class="col-sm-2 control-label">Value</label>
 <div class="col-sm-10" id="select2">
-  <select name="var_kat_id" id="var_kat_id" class="form-control" style="width: 100%;">
-  <option value="">Pilih salah satu</option>
-     <?php
-      $r_ragam=ragam_tema_list();
-      if ($r_ragam["error"]==FALSE) {
-        $i=1;
-      $max_ragam=$r_ragam["tema_total"];
-      for ($i=1;$i<=$max_ragam;$i++) {
-        echo '
-        <option value="'.$r_ragam["item"][$i]["tema_id"].'">'.$r_ragam["item"][$i]["tema_nama"].'</option>
-      ';  
-      }
-      }
-      else {
-        echo '
-        <option value="">'.$r_ragam["pesan_error"].'</option>
-        ';
-      }
-     ?>
-    </select>
+  <select name="diff_value_id" id="diff_value_id" class="form-control" style="width: 100%;">
+  <option value="">Pilih value</option>
+  </select>
 </div>
 </div>
 <div class="form-group">
@@ -121,13 +87,7 @@
     </select>
 </div>
   </div>
-  <div class="form-group">
-  <label for="inputEmail3" class="col-sm-2 control-label">&nbsp;</label>
-  <div class="col-sm-10">
-  <label><input type="checkbox" class="minimal-red" name="var_indikator" value="1"> Apakah masuk <strong>Indikator Strategis?</strong>
-                </label>
-  </div>
-  </div>
+  
 </div>
 <!-- /.box-body -->
 <div class="box-footer">

@@ -82,7 +82,9 @@
 							if ($r_var["item"][$i]["tema_var_indikator"] != "") { $indikator='<span class="label label-danger">strategis</span>'; } 
 						    else { $indikator="";}
 
-						    if ($r_var["item"][$i]["tema_var_metadata"] != "") { $metadata='<span><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#'.$r_var["item"][$i]["tema_var_metadata"].'">'.$r_var["item"][$i]["tema_var_metadata"].'</a></span>'; 
+						    if ($r_var["item"][$i]["tema_var_metadata"] != "") { 
+
+                  $metadata='<span><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#'.$r_var["item"][$i]["tema_var_metadata"].'">'.$r_var["item"][$i]["tema_var_metadata"].'</a></span>'; 
 						    	
 						    	$md_view=get_metadata($r_var["item"][$i]["tema_var_metadata"]);
 						    	if ($md_view["error"]==FALSE) {
@@ -143,7 +145,7 @@
 								<td>'.$i.'</td>
 								<td>'.$r_var["item"][$i]["tema_var_nama"].' <span class="label label-danger pull-right" title="'.$r_var["item"][$i]["jumlah_value"].' Variabel">'.$r_var["item"][$i]["jumlah_value"].'</span></td>
 								<td>'.$r_var["item"][$i]["tema_var_kat_nama"].'</td>
-								<td>'.$r_var["item"][$i]["tema_var_ket"].'</td>
+								<td>'.$r_var["item"][$i]["tema_var_ket"].'  ('.$r_var["item"][$i]["tema_var_satuan"].')</td>
 								<td>'.$r_var["item"][$i]["tema_var_posisi"].'</td>
 								<td>'.$indikator.' '.$metadata.'</td>
 								<td><!---<div class="text-center"><a href="#" class="btn btn-xs btn-warning" data-lihat="'.$lvl3.'/'.$r_var["item"][$i]["tema_var_id"].'"><i class="fa fa-search" aria-hidden="true"></i></a>---> 
@@ -223,7 +225,7 @@
 						$max_var_value=$r_var_value["var_value_total"];
 						for ($i=1;$i<=$max_var_value;$i++) {
 							if (!is_null($r_var_value["item"][$i]["var_value_wilayah"])) {
-								$wilayah='<span class="label label-danger">Turunan</span>';
+								$wilayah='<span class="label label-danger">ada turunan</span>';
 							}
 							else { $wilayah=''; }
 							echo '

@@ -84,6 +84,7 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Variabel</th>
+                  <th>Ket</th>
                   <th>Waktu</th>
                   <th>Nilai</th>
                   <th>Posisi</th>
@@ -98,6 +99,7 @@
               <tr>
                 <td>'.$i.'</td>
                 <td>'.$r_var_value["item"][$i]["var_value_nama"].'</td>
+                <td>'.$var_ket.' ('.$var_satuan.')</td>
                 <td>'.$r_var_value["item"][$i]["var_value_waktu"].'</td>
                 <td>'.$r_var_value["item"][$i]["var_value_nilai"].'</td>
                 <td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>

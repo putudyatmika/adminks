@@ -146,6 +146,7 @@ function list_variabel_value($var_id) {
 	}
 	return $value_var_list;
 }
+
 function json_variabel_value($var_id) {
 	$db_var_value = new db();
 	$conn_var_value = $db_var_value -> connect();
@@ -175,6 +176,7 @@ function json_variabel_value($var_id) {
 	}
 	return $value_var_list;
 }
+
 function list_variabel_kategori($kat_id) {
 	$db_var_kat = new db();
 	$conn_var_kat = $db_var_kat -> connect();
