@@ -82,6 +82,20 @@ function get_nama_variabel($var_id) { //hanya nama
 	}
 	return $nama_var;
 }
+function get_ragam_kat($kat_id) { //get kode ragam dari kode kategori
+	$db_var = new db();
+	$conn_var = $db_var -> connect();
+	$sql_var = $conn_var->query("select * from ragam_kategori where id='$kat_id'");
+	$cek_var= $sql_var->num_rows;
+	if ($cek_var>0) {
+		$r=$sql_var->fetch_object();
+		$ragam_id=$r->tema;
+	}
+	else {
+		$ragam_id="";
+	}
+	return $ragam_id;
+}
 function get_kategori_var($var_id) {
 	$db_var = new db();
 	$conn_var = $db_var -> connect();

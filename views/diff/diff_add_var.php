@@ -12,7 +12,7 @@
 <div class="form-group">
 <label for="diff_ragam_id" class="col-sm-2 control-label">Ragam</label>
 <div class="col-sm-10" id="select2">
-	<select name="diff_ragam_id" id="diff_ragam_id" class="form-control" style="width: 100%;">
+	<select name="diff_ragam_id" id="diff_ragam_id" class="form-control" style="width: 100%;" onchange="JsonVar(this.value)">
   <option value="">Pilih salah satu</option>
      <?php
      	$r_ragam=ragam_tema_list();
@@ -62,32 +62,6 @@
   <input type="number" name="var_posisi" class="form-control" id="inputPosisi" placeholder="Posisi variabel" required="">
   </div>
   </div>
-  <div class="form-group">
-  <label for="inputEmail3" class="col-sm-2 control-label">Metadata</label>
-  <div class="col-sm-10" id="select2">
-  <select name="var_metadata" id="var_metadata" class="form-control" style="width: 100%;">
-     <option value="">Tidak ada Metadata</option>
-     <?php
-      $r_md=list_metadata_all();
-      if ($r_md["error"]==false) {
-       $i=1;
-      $max_md=$r_md["md_total"];
-      for ($i=1;$i<=$max_md;$i++) {
-        echo '
-        <option value="'.$r_md["item"][$i]["md_id"].'">'.$r_md["item"][$i]["md_nama"].'</option>
-      ';  
-      }
-      }
-      else {
-        echo '
-        <option value="">'.$r_md["pesan_error"].'</option>
-        ';
-      }
-     ?>
-    </select>
-</div>
-  </div>
-  
 </div>
 <!-- /.box-body -->
 <div class="box-footer">
@@ -97,6 +71,7 @@
 <!-- /.box-footer -->
 <input type="hidden" name="tema_id" value="<?php echo $lvl3; ?>" />
 </form>
+<div class="hasiljson"></div>
 </div>
 <!-- /.box -->
 </div>

@@ -16,6 +16,9 @@ elseif ($act=="updatekat") {
 elseif ($act=="addvar") {
 	require 'ragam_addvar.php';
 }
+elseif ($act=="addvaronly") {
+	require 'ragam_addvar_only.php';
+}
 elseif ($act=="savevar") {
 	require 'ragam_savevar.php';
 }

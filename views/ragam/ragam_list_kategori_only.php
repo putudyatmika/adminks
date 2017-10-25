@@ -25,11 +25,11 @@
 							else {
 								$nama_kategori=$r_kat["item"][$i]["tema_kat_nama"];
 							}
-							$jml_var=get_jumlah_variabel_kategori($r_kat["item"][$i]["tema_kat_id"]);
+							//$jml_var=get_jumlah_variabel_kategori($r_kat["item"][$i]["tema_kat_id"]);
 							echo '
 							<tr>
 								<td>'.$i.'</td>
-								<td>'.$nama_kategori.' <span class="label label-primary pull-right" title="'.$jml_var.' Variabel">'.$jml_var.'</span></td>
+								<td>'.$nama_kategori.' <span class="label label-success pull-right" title="'.$r_kat["item"][$i]["jumlah_variabel"].' Variabel">'.$r_kat["item"][$i]["jumlah_variabel"].'</span></td>
 								<td>'.$r_kat["item"][$i]["tema_kat_posisi"].'</td>
 								<td><div class="text-center"><div class="text-center"><a href="'.$app_url.'/'.$page.'/viewonly/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-warning"><i class="fa fa-search" aria-hidden="true"></i></a> <a href="'.$app_url.'/'.$page.'/editkat/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapuskat/'.$lvl3.'/'.$r_kat["item"][$i]["tema_kat_id"].'" class="btn btn-xs btn-danger" data-confirm="Apakah data kategori ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div></td>
@@ -56,7 +56,7 @@
           <div class="col-md-8">
           <div class="box box-solid box-success">
             <div class="box-header">
-              <h3 class="box-title">Variabel dari Kategori <?php echo get_nama_kategori($lvl4); ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvar/'.$lvl3; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+              <h3 class="box-title">Variabel dari Kategori <?php echo get_nama_kategori($lvl4); ?></h3> <span class="pull-right"><button class="btn btn-xs btn-success" data-widget="collapse"><i class="fa fa-minus"></i></button> <a href="<?php echo $app_url.'/'.$page.'/addvaronly/'.$lvl3.'/'.$lvl4; ?>" class="btn btn-flat btn-xs btn-warning"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding table-responsive">
@@ -211,6 +211,14 @@
 						$i=1;
 						$max_var_value=$r_var_value["var_value_total"];
 						for ($i=1;$i<=$max_var_value;$i++) {
+              if (!is_null($r_var_value["item"][$i]["var_value_wilayah"])) {
+                $var_diff=get_var_diff_id($lvl5,$r_var_value["item"][$i]["var_value_waktu"]);
+                $wilayah='<a href="'.$app_url.'/diff/view/'.$var_diff.'" class="btn btn-xs btn-danger">Ada Turunan</a>';
+
+                $link_turunan='';
+              }
+              else { $wilayah=''; 
+              $link_turunan='<a href="'.$app_url.'/diff/tmbh/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>'; }
 							echo '
 							<tr>
 								<td>'.$i.'</td>
@@ -218,9 +226,10 @@
 								<td>'.$r_var_value["item"][$i]["var_value_waktu"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_nilai"].'</td>
 								<td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>
-								<td>'.$r_var_value["item"][$i]["var_value_wilayah"].'</td>
+								<td>'.$wilayah.'</td>
 								<td><div class="text-center">
-								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+								<a href="'.$app_url.'/diff/tmbh/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                <a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl5.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>
 							</tr>
