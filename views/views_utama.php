@@ -15,8 +15,13 @@
         <small><?php echo get_nama_ragamtema($lvl3); ?></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Here</li>
+        <li><a href="<?php echo $app_url;?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <?php
+        if (!isset($page) or empty($page)) {
+        }
+        else { ?>
+        <li class="active"><?php echo ucwords(strtolower($headerText));?></li>
+        <?php } ?>
       </ol>
     </section>
     <!-- Main content -->

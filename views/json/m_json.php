@@ -10,9 +10,9 @@ elseif ($act=="kat") {
 	echo json_encode($json_kat);
 }
 elseif ($act=="var") {
+	// /var/kat_id/
 	$kat_id=$lvl3;
-	$var_id=$lvl4;
-	$json_kat=json_get_kategori($tema_id);
+	$json_kat=json_get_variabel($kat_id);
 	echo json_encode($json_kat);
 }
 ?>

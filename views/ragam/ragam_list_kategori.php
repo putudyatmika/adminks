@@ -225,9 +225,14 @@
 						$max_var_value=$r_var_value["var_value_total"];
 						for ($i=1;$i<=$max_var_value;$i++) {
 							if (!is_null($r_var_value["item"][$i]["var_value_wilayah"])) {
-								$wilayah='<span class="label label-danger">ada turunan</span>';
+                $var_diff=get_var_diff_id($lvl4,$r_var_value["item"][$i]["var_value_waktu"]);
+								$wilayah='<a href="'.$app_url.'/diff/view/'.$var_diff.'" class="btn btn-xs btn-danger">Ada Turunan</a>';
+
+                $link_turunan='';
 							}
-							else { $wilayah=''; }
+							else { 
+                $wilayah=''; 
+              $link_turunan='<a href="'.$app_url.'/diff/tmbh/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>'; }
 							echo '
 							<tr>
 								<td>'.$i.'</td>
@@ -237,7 +242,7 @@
 								<td>'.$r_var_value["item"][$i]["var_value_posisi"].'</td>
 								<td>'.$wilayah.'</td>
 								<td><div class="text-center">
-								<a href="'.$app_url.'/diff/add/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								'.$link_turunan.'
 								<a href="'.$app_url.'/'.$page.'/editvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 								<a href="'.$app_url.'/'.$page.'/hapusvalue/'.$lvl3.'/'.$lvl4.'/'.urlencode($r_var_value["item"][$i]["var_value_waktu"]).'" class="btn btn-xs btn-danger" data-confirm="Apakah data value ini akan di hapus?"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
 								</td>

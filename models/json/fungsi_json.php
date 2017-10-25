@@ -1,8 +1,9 @@
 <?php
 function json_variabel_value($var_id) {
+	// /value/var_id/
 	$db_var_value = new db();
 	$conn_var_value = $db_var_value -> connect();
-	$sql_var_value = $conn_var_value -> query("select ragam_kategori.nama as katnama, ragam_variabel.nama as varnama, ragam_value.* FROM ragam_value INNER JOIN ragam_variabel on ragam_value.variabel=ragam_variabel.id INNER JOIN ragam_kategori on ragam_variabel.kategori=ragam_kategori.id WHERE ragam_value.variabel='$var_id' ORDER by ragam_value.posisi ASC");
+	$sql_var_value = $conn_var_value -> query("select ragam_kategori.nama as katnama, ragam_variabel.nama as varnama, ragam_value.* FROM ragam_value INNER JOIN ragam_variabel on ragam_value.variabel=ragam_variabel.id left JOIN ragam_kategori on ragam_variabel.kategori=ragam_kategori.id WHERE ragam_value.variabel='$var_id' ORDER by ragam_value.posisi ASC");
 	$cek_var_value = $sql_var_value->num_rows;
 	$var_value_list=array("error"=>false);
 	if ($cek_var_value>0) {
@@ -55,5 +56,31 @@ function json_get_kategori($ragam_id) {
 	}
 	return $tema_list_kat;
 
+}
+function json_get_variabel($kat_id) {
+	$db_var_kat = new db();
+	$conn_var_kat = $db_var_kat -> connect();
+	$sql_var_kat = $conn_var_kat -> query("select * from ragam_variabel where kategori='$kat_id' order by posisi asc ");
+	$cek_var_kat = $sql_var_kat->num_rows;
+	$list_var_kat=array("error"=>false);
+	if ($cek_var_kat>0) {
+		$list_var_kat["error"]=false;
+		$list_var_kat["var_kat_total"]=$cek_var_kat;
+		$i=1;
+		while ($r=$sql_var_kat->fetch_object()) {
+			$list_var_kat["item"][$i]=array(
+				"var_id"=>$r->id,
+				"var_nama"=>$r->nama,
+				"var_posisi"=>$r->posisi,
+				"var_ket"=>$r->keterangan
+			);
+			$i++;
+		}
+	}
+	else {
+		$list_var_kat["error"]=true;
+		$list_var_kat["pesan_error"]="data variabel kosong";
+	}
+	return $list_var_kat;
 }
 ?>
